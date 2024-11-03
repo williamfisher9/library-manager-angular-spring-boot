@@ -1,0 +1,58 @@
+.home-page {
+    width: 100%;
+    height: 100%;
+    background-image: url("../../assets/wallpaper.jpeg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.home-page-logo {
+    position: absolute;
+    background-image: url("../../assets/logo-rtransparent.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    top: 20%;
+    left: 50%;
+    width: 300px;
+    height: 150px;
+    transform: translate(-50%, -50%);
+}
+
+.home-page-cover{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.title {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-text-stroke-color: rgb(209, 174, 104);
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-fill-color: rgba(209, 174, 104, 0.3);
+    font-size: 3rem;
+    user-select: none;
+}
+
+.subtitle {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-text-stroke-color: rgb(209, 174, 104);
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-fill-color: rgba(209, 174, 104, 0.3);
+    animation: flicker 2s linear infinite alternate;
+    font-size: 1.5rem;
+    user-select: none;
+}
+
+@keyframes flicker {
+    from {text-shadow: 0px 0px 50px rgb(242, 255, 0), 0px 0px 50px rgb(130, 255, 53);}
+    to {text-shadow: 0px 0px 50px rgb(255, 170, 0), 0px 0px 50px rgb(203, 67, 67);}
+}
