@@ -1,4 +1,4 @@
-package com.apps.library.manager.model;
+package com.apps.library.manager.model.security;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;

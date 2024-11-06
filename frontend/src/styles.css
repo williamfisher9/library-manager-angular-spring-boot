@@ -7,9 +7,17 @@
 }
 
 body {
-    background-color: #1a1a1a;
+    
     width: 100svw;
     min-height: 100svh;
     height: 100svh;
     font-family: 'Poppins', sans-serif;
+
+    background-image: url("./assets/wallpaper.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    overflow-x: hidden;
 }

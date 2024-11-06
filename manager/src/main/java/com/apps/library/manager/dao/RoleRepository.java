@@ -1,6 +1,6 @@
 package com.apps.library.manager.dao;
 
-import com.apps.library.manager.model.Role;
+import com.apps.library.manager.model.security.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

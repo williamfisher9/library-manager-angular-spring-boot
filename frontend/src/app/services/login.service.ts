@@ -11,8 +11,8 @@ export class LoginService {
   constructor(private http : HttpClient) { }
 
   submitLoginRequest(loginRequest : LoginRequest) : Observable<any> {
-    console.log(loginRequest)
-    return this.http.post("http://localhost:9999/api/v1/public/login", null,{headers: {"Authorization": `Basic ${btoa(loginRequest.username + ':' + loginRequest.password)}`}})
+    return this.http.post("http://localhost:9999/api/v1/public/login"
+      , null,{headers: {"Authorization": `Basic ${btoa(loginRequest.username + ':' + loginRequest.password)}`}})
       .pipe(map(response => response));
   }
 }

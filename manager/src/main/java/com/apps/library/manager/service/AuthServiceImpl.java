@@ -5,8 +5,8 @@ import com.apps.library.manager.dao.UserRepository;
 import com.apps.library.manager.dto.UserDTO;
 import com.apps.library.manager.exceptions.AuthorizationHeaderNotFoundException;
 import com.apps.library.manager.exceptions.RoleNotFoundException;
-import com.apps.library.manager.model.Role;
-import com.apps.library.manager.model.User;
+import com.apps.library.manager.model.security.Role;
+import com.apps.library.manager.model.security.User;
 import jakarta.servlet.http.HttpServletRequest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,10 +56,9 @@ public class AuthServiceImpl implements AuthService{
     }
 
     @Override
-    public boolean authenticateUser(HttpServletRequest request) {
+    public Authentication authenticateUser(HttpServletRequest request) {
         String header;
         if(request.getHeader("Authorization") != null) {
-            System.out.println(request.getHeader("Authorization"));
             header = request.getHeader("Authorization").substring("Basic ".length());
         }
         else
@@ -71,9 +70,6 @@ public class AuthServiceImpl implements AuthService{
                 new UsernamePasswordAuthenticationToken(decodedHeaderVal.split(":")[0],
                         decodedHeaderVal.split(":")[1]);
 
-        System.out.println("before auth...");
-        Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-        System.out.println("after auth...");
-        return authentication.isAuthenticated();
+        return authenticationManager.authenticate(usernamePasswordAuthenticationToken);
     }
 }

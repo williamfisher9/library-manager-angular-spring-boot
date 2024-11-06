@@ -1,6 +1,6 @@
 package com.apps.library.manager.dao;
 
-import com.apps.library.manager.model.User;
+import com.apps.library.manager.model.security.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

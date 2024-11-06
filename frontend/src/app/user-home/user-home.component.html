@@ -1,0 +1,40 @@
+<div class="container">
+
+    <div class="modal" [style.visibility]="hideModal">
+        <div class="modal-box">
+            <i class="close-icon fa-solid fa-xmark" (click)="closeModal()"></i>
+            <div class="form-field-group">
+                <input class="form-field-input" type="text" name="name" id="name" autocomplete="off" [(ngModel)]="inputValue"/>
+                <label for="name" class="form-field-label">name</label>
+            </div>
+
+            <div class="form-button-group">
+                <input class="btn-caption" type="submit" value="search" (click)="showInputValue()">
+            </div>
+
+            @if (response != null) {
+                <div class="movie-item-container">
+                    <img width="125px" height="175px" [src]="response.Poster" alt='API Image' />
+                    <div class="movie-details">
+                        <p>Title: {{response.Title}}</p>
+                        <p>Year: {{response.Year}}</p>
+                        <input type="button" value="ADD TO LIBRARY" id="add-btn" (click)="addMovieToLibrary(response)"/>
+                    </div>
+                </div>
+            } 
+        </div>
+    </div>
+
+    <!--<div class="add-item item dashed-border" (click)="showModal()">
+        <i class="icon fa-solid fa-plus"></i>
+    </div>-->
+
+    @for (item of items; track $index) {
+        <div class="item solid-border">
+            <img [src]="item.poster" />
+            <div class="item-cover">
+                <p>{{item.name}}</p>
+            </div>
+        </div>
+    }
+</div>
