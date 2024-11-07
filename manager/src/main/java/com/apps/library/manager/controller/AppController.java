@@ -83,4 +83,20 @@ public class AppController {
 
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/public/get-menu")
+    public ResponseEntity<ResponseDTO> getPublicMenu(){
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setStatus(200);
+        responseDTO.setResponse(authService.getMenu("public"));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/user/get-menu")
+    public ResponseEntity<ResponseDTO> getPrivateMenu(){
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setStatus(200);
+        responseDTO.setResponse(authService.getMenu("ROLE_USER"));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
 }

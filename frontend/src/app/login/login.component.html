@@ -1,16 +1,17 @@
+<app-menu [menuItems]="menuItems"></app-menu>
+<form [formGroup]="loginForm" class="fields-container" (ngSubmit)="submitLoginRequest()">
+    <div class="form-field-group">
+        <input class="form-field-input" type="text" name="username" id="username" autocomplete="off"
+            formControlName="username" />
+        <label for="username" class="form-field-label">username</label>
+    </div>
 
-    <form [formGroup]="loginForm" class="fields-container" (ngSubmit)="submitLoginRequest()">
-        <div class="form-field-group">
-            <input class="form-field-input" type="text" name="username" id="username" autocomplete="off" formControlName="username"/>
-            <label for="username" class="form-field-label">username</label>
-        </div>
+    <div class="form-field-group">
+        <input class="form-field-input" type="password" name="password" id="password" formControlName="password" />
+        <label for="password" class="form-field-label">password</label>
+    </div>
 
-        <div class="form-field-group">
-            <input class="form-field-input" type="password" name="password" id="password" formControlName="password"/>
-            <label for="password" class="form-field-label">password</label>
-        </div>
-
-        <div class="form-button-group">
-            <input class="btn-caption" type="submit" value="submit">
-        </div>
-    </form>
+    <div class="form-button-group">
+        <input class="btn-caption" type="submit" value="submit">
+    </div>
+</form>

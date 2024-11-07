@@ -4,11 +4,13 @@ import { AppService } from '../services/app.service';
 import { Item } from '../model/item';
 import { DataService } from '../services/data.service';
 import { FormsModule } from '@angular/forms';
+import { MenuComponent } from "../menu/menu.component";
+import { MenuItem } from '../model/menu-item';
 
 @Component({
   selector: 'app-user-home',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, MenuComponent],
   templateUrl: './user-home.component.html',
   styleUrl: './user-home.component.css'
 })
@@ -23,13 +25,17 @@ export class UserHomeComponent implements OnInit{
 
   constructor(private route : ActivatedRoute, private appService : AppService, private dataService : DataService){}
 
+  menuItems:MenuItem[] = [];
+
   ngOnInit() : void{
+
+    this.dataService.getUsername.subscribe(res => this.username = res);
+      this.dataService.getPassword.subscribe(res => this.password = res) 
+
+    this.appService.getPrivateMenuItems(this.username, this.password).subscribe((res) => {this.menuItems = res.response; console.log(this.menuItems)})
+
     this.route.queryParamMap.subscribe(paramMap  => {
       this.userId = paramMap.get('id');
-
-      this.dataService.getUsername.subscribe(res => this.username = res);
-      this.dataService.getPassword.subscribe(res => this.password = res)      
-
       this.appService.getUserHome(this.userId == null ? 0 : parseInt(this.userId), this.username, this.password)
       .subscribe({
         next: res => {this.items = res.response;},
@@ -75,5 +81,9 @@ export class UserHomeComponent implements OnInit{
       })
       }
     })
+  }
+
+  logUserOut() {
+    console.log("logged out")
   }
 }

@@ -22,16 +22,18 @@ public class Menu implements Serializable {
     private String menuItemIcon;
     private int menuItemOrder;
     private String routerLink;
+    private String functionItem;
 
     public Menu() {
     }
 
-    public Menu(String role, String menuItem, String menuItemIcon, int menuItemOrder, String routerLink) {
+    public Menu(String role, String menuItem, String menuItemIcon, int menuItemOrder, String routerLink, String functionItem) {
         this.role = role;
         this.menuItem = menuItem;
         this.menuItemIcon = menuItemIcon;
         this.menuItemOrder = menuItemOrder;
         this.routerLink = routerLink;
+        this.functionItem = functionItem;
     }
 
     public Long getId() {
@@ -74,17 +76,33 @@ public class Menu implements Serializable {
         this.menuItemOrder = menuItemOrder;
     }
 
+    public String getRouterLink() {
+        return routerLink;
+    }
+
+    public void setRouterLink(String routerLink) {
+        this.routerLink = routerLink;
+    }
+
+    public String getFunctionItem() {
+        return functionItem;
+    }
+
+    public void setFunctionItem(String functionItem) {
+        this.functionItem = functionItem;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Menu menu = (Menu) o;
-        return menuItemOrder == menu.menuItemOrder && Objects.equals(id, menu.id) && Objects.equals(role, menu.role) && Objects.equals(menuItem, menu.menuItem) && Objects.equals(menuItemIcon, menu.menuItemIcon) && Objects.equals(routerLink, menu.routerLink);
+        return menuItemOrder == menu.menuItemOrder && Objects.equals(id, menu.id) && Objects.equals(role, menu.role) && Objects.equals(menuItem, menu.menuItem) && Objects.equals(menuItemIcon, menu.menuItemIcon) && Objects.equals(routerLink, menu.routerLink) && Objects.equals(functionItem, menu.functionItem);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, role, menuItem, menuItemIcon, menuItemOrder, routerLink);
+        return Objects.hash(id, role, menuItem, menuItemIcon, menuItemOrder, routerLink, functionItem);
     }
 
     @Override
@@ -96,14 +114,7 @@ public class Menu implements Serializable {
                 ", menuItemIcon='" + menuItemIcon + '\'' +
                 ", menuItemOrder=" + menuItemOrder +
                 ", routerLink='" + routerLink + '\'' +
+                ", functionItem='" + functionItem + '\'' +
                 '}';
-    }
-
-    public String getRouterLink() {
-        return routerLink;
-    }
-
-    public void setRouterLink(String routerLink) {
-        this.routerLink = routerLink;
     }
 }

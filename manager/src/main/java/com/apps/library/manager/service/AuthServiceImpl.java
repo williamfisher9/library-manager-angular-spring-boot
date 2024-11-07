@@ -1,10 +1,12 @@
 package com.apps.library.manager.service;
 
+import com.apps.library.manager.dao.MenuRepository;
 import com.apps.library.manager.dao.RoleRepository;
 import com.apps.library.manager.dao.UserRepository;
 import com.apps.library.manager.dto.UserDTO;
 import com.apps.library.manager.exceptions.AuthorizationHeaderNotFoundException;
 import com.apps.library.manager.exceptions.RoleNotFoundException;
+import com.apps.library.manager.model.app.Menu;
 import com.apps.library.manager.model.security.Role;
 import com.apps.library.manager.model.security.User;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,14 +28,16 @@ public class AuthServiceImpl implements AuthService{
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
+    private final MenuRepository menuRepository;
 
     @Autowired
-    public AuthServiceImpl(UserRepository userRepository, ModelMapper modelMapper, RoleRepository roleRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
+    public AuthServiceImpl(UserRepository userRepository, ModelMapper modelMapper, RoleRepository roleRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, MenuRepository menuRepository) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
+        this.menuRepository = menuRepository;
     }
 
     @Override
@@ -71,5 +75,10 @@ public class AuthServiceImpl implements AuthService{
                         decodedHeaderVal.split(":")[1]);
 
         return authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+    }
+
+    @Override
+    public List<Menu> getMenu(String type) {
+        return menuRepository.findByRole(type);
     }
 }

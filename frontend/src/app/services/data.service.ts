@@ -32,4 +32,11 @@ export class DataService {
   setPassword(val : string) {
     this.password.next(val);
   }
+
+  logUserOut(){
+    this.username.next('');
+    this.password.next('');
+    this.userId.next(0);
+    this.authenticated.next(false);
+  }
 }

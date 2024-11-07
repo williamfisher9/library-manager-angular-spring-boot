@@ -4,29 +4,32 @@
         <img id="logo-title" src="assets/title.png" height="60px"/>
     </div>
     <div class="menu">
-        <div class="menu-item" [routerLink]="['/register']">
-            <div class="menu-item-icon">
-                <i class="fa-solid fa-user-plus fa-fw"></i>
-            </div>
-            <div class="menu-item-caption">
-                signup
-            </div>
-        </div>
-        <div class="menu-item" [routerLink]="['/login']">
-            <div class="menu-item-icon">
-                <i class="fa-solid fa-arrow-right-to-bracket fa-fw"></i>
-            </div>
-            <div class="menu-item-caption">
-                login
-            </div>
-        </div>
-        <div class="menu-item">
-            <div class="menu-item-icon">
-                <i class="fa-solid fa-gear fa-fw"></i>
-            </div>
-            <div class="menu-item-caption">
-                settings
-            </div>
-        </div>
+
+        @for (item of menuItems; track $index) {
+            @if(item.routerLink != ''){
+                <div class="menu-item"  [routerLink]="[item.routerLink]">
+                    <div class="menu-item-icon">
+                        <i [class]="item.menuItemIcon"></i>
+                    </div>
+                    <div class="menu-item-caption">
+                        {{item.menuItem}}
+                    </div>
+                </div>
+            } @else {
+                <div class="menu-item" (click)="callFunction(item.functionItem)">
+                    <div class="menu-item-icon"  (click)="item.functionItem">
+                        <i [class]="item.menuItemIcon"></i>
+                    </div>
+                    <div class="menu-item-caption"  (click)="item.functionItem">
+                        {{item.menuItem}}
+                    </div>
+                </div>
+            }
+
+            
+        }
+
+        
+        
     </div>
 </div>

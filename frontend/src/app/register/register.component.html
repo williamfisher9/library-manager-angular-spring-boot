@@ -1,25 +1,30 @@
-    <form [formGroup]="registerForm" class="fields-container" (ngSubmit)="submitRegisterForm()">
-        <div class="form-field-group">
-            <input class="form-field-input" type="text" name="firstName" id="firstName" autocomplete="off" formControlName="firstName"/>
-            <label for="firstName" class="form-field-label">First Name</label>
-        </div>
+<app-menu [menuItems]="menuItems"></app-menu>
+<form [formGroup]="registerForm" class="fields-container" (ngSubmit)="submitRegisterForm()">
+    <div class="form-field-group">
+        <input class="form-field-input" type="text" name="firstName" id="firstName" autocomplete="off"
+            formControlName="firstName" />
+        <label for="firstName" class="form-field-label">First Name</label>
+    </div>
 
-        <div class="form-field-group">
-            <input class="form-field-input" type="text" name="lastName" id="lastName" autocomplete="off" formControlName="lastName"/>
-            <label for="lastName" class="form-field-label">Last Name</label>
-        </div>
-        
-        <div class="form-field-group">
-            <input class="form-field-input" type="text" name="username" id="username" autocomplete="off" formControlName="emailAddress"/>
-            <label for="username" class="form-field-label">email address</label>
-        </div>
+    <div class="form-field-group">
+        <input class="form-field-input" type="text" name="lastName" id="lastName" autocomplete="off"
+            formControlName="lastName" />
+        <label for="lastName" class="form-field-label">Last Name</label>
+    </div>
 
-        <div class="form-field-group">
-            <input class="form-field-input" type="password" name="password" id="password" autocomplete="off" formControlName="password"/>
-            <label for="password" class="form-field-label">password</label>
-        </div>
+    <div class="form-field-group">
+        <input class="form-field-input" type="text" name="username" id="username" autocomplete="off"
+            formControlName="emailAddress" />
+        <label for="username" class="form-field-label">email address</label>
+    </div>
 
-        <div class="form-button-group">
-            <input class="btn-caption" type="submit" value="submit">
-        </div>
-    </form>
+    <div class="form-field-group">
+        <input class="form-field-input" type="password" name="password" id="password" autocomplete="off"
+            formControlName="password" />
+        <label for="password" class="form-field-label">password</label>
+    </div>
+
+    <div class="form-button-group">
+        <input class="btn-caption" type="submit" value="submit">
+    </div>
+</form>

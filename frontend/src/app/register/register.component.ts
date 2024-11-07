@@ -1,19 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { RegisterRequest } from '../model/register-request';
 import { RegisterService } from '../services/register.service';
+import { Router } from '@angular/router';
+import { MenuComponent } from "../menu/menu.component";
+import { MenuItem } from '../model/menu-item';
+import { AppService } from '../services/app.service';
 
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MenuComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
 
-  constructor(private registerService : RegisterService) {}
+  constructor(private registerService : RegisterService, private router : Router, private appService : AppService) {}
+
+  menuItems:MenuItem[] = [];
+  ngOnInit() {
+    console.log(this.router.url)
+    if(this.router.url == '/register'){
+      this.appService.getPublicMenuItems().subscribe((res) => {this.menuItems = res.response; console.log(this.menuItems)})
+    }
+  }
 
   registerForm = new FormGroup({
     firstName: new FormControl(""),

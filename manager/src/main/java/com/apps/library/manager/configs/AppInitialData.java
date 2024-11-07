@@ -37,12 +37,12 @@ public class AppInitialData implements CommandLineRunner {
         }
 
         if(menuRepository.findAll().isEmpty()){
-            Menu menu1 = new Menu("PUBLIC", "register", "fa-solid fa-user-plus", 1, "/register");
-            Menu menu2 = new Menu("PUBLIC", "login", "fa-solid fa-arrow-right-to-bracket", 2, "/login");
-            Menu menu3 = new Menu("ROLE_USER", "settings", "fa-solid fa-gear", 2, "/settings");
-            Menu menu4 = new Menu("ROLE_USER", "logout", "fa-solid fa-right-from-bracket", 1, "/logout");
-            Menu menu5 = new Menu("ROLE_USER", "search", "fa-solid fa-right-from-bracket", 1, "/search");
-            Menu menu6 = new Menu("ROLE_USER", "add", "fa-solid fa-right-from-bracket", 1, "/add");
+            Menu menu1 = new Menu("PUBLIC", "register", "fa-solid fa-user-plus fa-fw", 1, "/register", "");
+            Menu menu2 = new Menu("PUBLIC", "login", "fa-solid fa-arrow-right-to-bracket fa-fw", 2, "/login", "");
+            Menu menu3 = new Menu("ROLE_USER", "search", "fa-solid fa-magnifying-glass fa-fw", 1, "", "");
+            Menu menu4 = new Menu("ROLE_USER", "add", "fa-solid fa-plus fa-fw", 2, "", "addItem");
+            Menu menu5 = new Menu("ROLE_USER", "settings", "fa-solid fa-gear fa-fw", 3, "/settings", "");
+            Menu menu6 = new Menu("ROLE_USER", "logout", "fa-solid fa-right-from-bracket fa-fw", 4, "", "logUserOut");
             menuRepository.save(menu1);
             menuRepository.save(menu2);
             menuRepository.save(menu3);
