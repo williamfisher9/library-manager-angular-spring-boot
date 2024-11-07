@@ -4,14 +4,18 @@
         <input class="form-field-input" type="text" name="username" id="username" autocomplete="off"
             formControlName="username" />
         <label for="username" class="form-field-label">username</label>
+        <p class="error-msg">{{errors.username != '' ? errors.username : ''}}</p>
     </div>
 
     <div class="form-field-group">
         <input class="form-field-input" type="password" name="password" id="password" formControlName="password" />
         <label for="password" class="form-field-label">password</label>
+        <p class="error-msg">{{errors.password != '' ? errors.password : ''}}</p>
     </div>
 
     <div class="form-button-group">
         <input class="btn-caption" type="submit" value="submit">
     </div>
+
+    <p class="request-error-msg">{{errors.credentials != '' ? errors.credentials : ''}}</p>
 </form>

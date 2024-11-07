@@ -35,15 +35,61 @@ export class RegisterComponent implements OnInit{
     roles : new FormControl(["ROLE_USER"])
   })
 
-  submitRegisterForm() {
+  errors = {
+    firstName: '',
+    lastName: '',
+    emailAddress: '',
+    password: '',
+    credentials: ''
+  };
 
-    let registerRequest = new RegisterRequest(this.registerForm.value.firstName!, this.registerForm.value.lastName!, 
-      this.registerForm.value.emailAddress!, this.registerForm.value.password!, this.registerForm.value.roles!);
-    
-    this.registerService.createUser(registerRequest).subscribe({
-      next: response => console.log(response.status),
-      error: err => console.log(err.error)
-    })
+  submitRegisterForm() {
+    this.errors = {
+      firstName: '',
+      lastName: '',
+      emailAddress: '',
+      password: '',
+      credentials: ''
+    };
+
+    let hasErrors = false;
+
+    if(this.registerForm.value.firstName == ''){
+      this.errors.firstName = 'First name field should not be empty';
+      hasErrors = true;
+    }
+
+    if(this.registerForm.value.lastName == ''){
+      this.errors.lastName = 'Last name field should not be empty';
+      hasErrors = true;
+    }
+
+    if(this.registerForm.value.emailAddress == ''){
+      this.errors.emailAddress = 'Email address field should not be empty';
+      hasErrors = true;
+    }
+
+    if(this.registerForm.value.password == ''){
+      this.errors.password = 'Password field should not be empty';
+      hasErrors = true;
+    }
+
+    if(!hasErrors){
+      let registerRequest = new RegisterRequest(this.registerForm.value.firstName!, this.registerForm.value.lastName!, 
+        this.registerForm.value.emailAddress!, this.registerForm.value.password!, this.registerForm.value.roles!);
+      
+      this.registerService.createUser(registerRequest).subscribe({
+        next: response => {
+          if(response.status == 200){
+            this.router.navigate(['/login']);
+          }
+        },
+        error: err => {
+          console.log(err.error.error);
+          this.errors.credentials = err.error.error;
+        }
+      })
+    }
   }
 
 }

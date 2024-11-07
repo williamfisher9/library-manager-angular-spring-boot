@@ -215,3 +215,17 @@
     color: #fff;
     font-size: 1.2rem;
 }
+
+.error-msg { 
+    position: absolute;
+    bottom: -22px;
+    left: 10px;
+    color: red;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.request-error-msg {
+    color: red;
+    font-weight: 500;
+}

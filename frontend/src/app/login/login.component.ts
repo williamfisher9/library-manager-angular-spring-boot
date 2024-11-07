@@ -24,6 +24,12 @@ export class LoginComponent {
     password: new FormControl("12345678")
   })
 
+  errors = {
+    username: "",
+    password: "",
+    credentials: ''
+  }
+
   constructor(private loginService : LoginService, private router : Router, private dataService : DataService, private appService : AppService) {}
 
   menuItems:MenuItem[] = [];
@@ -35,7 +41,21 @@ export class LoginComponent {
   }
 
   submitLoginRequest() {
-    let loginRequest = new LoginRequest(this.loginForm.value.username!, this.loginForm.value.password!);
+    this.errors = {username: '', password: '', credentials: ''};
+    let hasErrors = false;
+
+    if(this.loginForm.value.username == ''){
+      this.errors.username = 'Username field should not be empty';
+      hasErrors = true;
+    }
+
+    if(this.loginForm.value.password == ''){
+      this.errors.password = 'Password field should not be empty';
+      hasErrors = true;
+    }
+
+    if(!hasErrors){
+      let loginRequest = new LoginRequest(this.loginForm.value.username!, this.loginForm.value.password!);
     this.loginService.submitLoginRequest(loginRequest).subscribe({
       next: response => {
         if(response.status == 200){
@@ -46,7 +66,11 @@ export class LoginComponent {
           this.router.navigate(['/user-home'], { queryParams: {id: response.response.principal.id}})
         }
       },
-      error: err => console.log(err)
+      error: err => {
+        this.errors.credentials = 'Invalid username/password'
+      }
     })
+    }
+    
   }
 }

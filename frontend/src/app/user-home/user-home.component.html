@@ -8,11 +8,14 @@
                 <input class="form-field-input" type="text" name="name" id="name" autocomplete="off"
                     [(ngModel)]="inputValue" />
                 <label for="name" class="form-field-label">name</label>
+                <p class="error-msg">{{errors.name != '' ? errors.name : ''}}</p>
             </div>
 
             <div class="form-button-group">
                 <input class="btn-caption" type="submit" value="search" (click)="showInputValue()">
             </div>
+
+            <p class="request-error-msg">{{errors.credentials != '' ? errors.credentials : ''}}</p>
 
             @if (response != null) {
             <div class="movie-item-container">

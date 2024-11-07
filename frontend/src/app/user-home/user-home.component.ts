@@ -58,18 +58,46 @@ export class UserHomeComponent implements OnInit{
   response! : any;
 
   showInputValue(){
+    let hasErrors = false;
+    this.errors = {
+      name: '',
+      credentials: ''
+    }
+
+    if(this.inputValue == ''){
+      hasErrors = true;
+      this.errors.name = 'Name field is required';
+    }
+
+    if(!hasErrors){
     this.dataService.getUsername.subscribe(res => this.username = res);
       this.dataService.getPassword.subscribe(res => this.password = res)      
 
       this.appService.getDetails(this.inputValue, this.username, this.password)
       .subscribe({
-        next: res => {this.response = JSON.parse(res.response);},
-        error: err => console.log(err)
+        next: res => {
+          if(JSON.parse(res.response).Response == 'False'){
+            this.errors.credentials = JSON.parse(res.response).Error;
+            this.response = null;
+          } else {
+            this.response = JSON.parse(res.response);
+          }
+        },
+        error: err => {
+          this.errors.credentials = 'ERROR!'
+        }
       })
+    }
+  }
+
+  errors = {
+    name: '',
+    credentials: ''
   }
 
   addMovieToLibrary(response : any){
-    this.appService.createMovieItem(this.userId == null ? 0 : parseInt(this.userId), this.username, this.password, response)
+    
+      this.appService.createMovieItem(this.userId == null ? 0 : parseInt(this.userId), this.username, this.password, response)
     .subscribe(res => {
       if(res.status == 200){
         this.hideModal = "hidden";
@@ -81,6 +109,7 @@ export class UserHomeComponent implements OnInit{
       })
       }
     })
+    
   }
 
   logUserOut() {
