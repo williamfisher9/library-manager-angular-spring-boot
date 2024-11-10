@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MenuItem } from '../model/menu-item';
 import { AppService } from '../services/app.service';
+import { DataService } from '../services/data.service';
+import { map, take, tap } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -14,7 +16,7 @@ export class MenuComponent {
   @Input() menuItems : MenuItem[] = [];
   @Output() newItemEvent = new EventEmitter<any>();
 
-  constructor(private appService : AppService){}
+  constructor(private appService : AppService, private dataService : DataService, private router : Router){}
 
   callFunction(val : string) {
     switch(val){
@@ -22,5 +24,17 @@ export class MenuComponent {
       case 'addItem': { this.newItemEvent.emit(); break; }
       default: console.log("something else was received!")
     }
+  }
+
+  handleLogoClick(){
+    this.dataService.getUsername.pipe(take(1)).subscribe({
+      next: res => {
+        if(res == ''){
+          this.router.navigate(['/']);
+        } else {
+          this.router.navigate(['/user-home']);
+        }
+      }
+    });
   }
 }
