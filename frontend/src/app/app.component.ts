@@ -10,12 +10,5 @@ import { Router, RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 
-export class AppComponent implements OnInit{
-  constructor(private router : Router){}
-
-  ngOnInit() {
-    console.log("------------------")
-    console.log(this.router.url)
-  }
-
+export class AppComponent{
 }

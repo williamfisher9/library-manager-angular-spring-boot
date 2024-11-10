@@ -21,16 +21,18 @@ public class Item implements Serializable {
     private String rating;
     private String poster;
     private Long userId;
+    private String details;
 
     public Item() {
     }
 
-    public Item(String name, String year, String rating, String poster, Long userId) {
+    public Item(String name, String year, String rating, String poster, Long userId, String details) {
         this.name = name;
         this.year = year;
         this.rating = rating;
         this.poster = poster;
         this.userId = userId;
+        this.details = details;
     }
 
     public Long getUserId() {
@@ -86,12 +88,12 @@ public class Item implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return Objects.equals(id, item.id) && Objects.equals(name, item.name) && Objects.equals(year, item.year) && Objects.equals(rating, item.rating) && Objects.equals(poster, item.poster) && Objects.equals(userId, item.userId);
+        return Objects.equals(id, item.id) && Objects.equals(name, item.name) && Objects.equals(year, item.year) && Objects.equals(rating, item.rating) && Objects.equals(poster, item.poster) && Objects.equals(userId, item.userId) && Objects.equals(details, item.details);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, year, rating, poster, userId);
+        return Objects.hash(id, name, year, rating, poster, userId, details);
     }
 
     @Override
@@ -103,6 +105,15 @@ public class Item implements Serializable {
                 ", rating='" + rating + '\'' +
                 ", poster='" + poster + '\'' +
                 ", userId=" + userId +
+                ", details='" + details + '\'' +
                 '}';
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 }

@@ -22,7 +22,7 @@ public class ControllerExceptionHandler {
     public ResponseEntity<Map<String, Object>> handleSQLIntegrityConstraintViolationException(SQLIntegrityConstraintViolationException exc){
         Map<String, Object> errors = new HashMap<>();
         if(exc.getMessage().contains("Duplicate entry")){
-            errors.put("error", exc.getMessage());
+            errors.put("error", "Email address already registered.");
         }
 
         return new ResponseEntity<>(errors, HttpStatus.CONFLICT);

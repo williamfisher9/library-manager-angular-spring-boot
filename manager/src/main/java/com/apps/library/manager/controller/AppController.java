@@ -52,16 +52,14 @@ public class AppController {
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setStatus(200);
 
-        System.out.println(Long.valueOf(userDetails.get("userId")));
-
-        System.out.println(itemService.findByUserId(Long.valueOf(userDetails.get("userId"))));
-
         responseDTO.setResponse(itemService.findByUserId(Long.valueOf(userDetails.get("userId"))));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/user/create-item")
     public ResponseEntity<ResponseDTO> createItem(@RequestBody Item item){
+
+        System.out.println(item);
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setStatus(200);
         responseDTO.setResponse(itemService.createItem(item));
@@ -97,6 +95,14 @@ public class AppController {
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setStatus(200);
         responseDTO.setResponse(authService.getMenu("ROLE_USER"));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "/user/{userId}/item/{id}")
+    public ResponseEntity<ResponseDTO> deleteItemById(@PathVariable("userId") int userId, @PathVariable("id") int id){
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setResponse(itemService.deleteItemById((long) userId, (long) id));
+        responseDTO.setStatus(200);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 }

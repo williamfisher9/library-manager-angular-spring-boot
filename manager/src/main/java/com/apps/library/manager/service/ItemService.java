@@ -11,6 +11,6 @@ public interface ItemService {
     Item createItem(Item item);
     Item findItemById(Long id);
     List<Item> findAllItems();
-    boolean deleteItemById(Long id);
+    List<Item> deleteItemById(Long userId, Long id);
     List<Item> findByUserId(Long id);
 }

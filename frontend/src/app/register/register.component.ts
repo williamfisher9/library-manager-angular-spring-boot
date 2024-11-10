@@ -21,9 +21,8 @@ export class RegisterComponent implements OnInit{
 
   menuItems:MenuItem[] = [];
   ngOnInit() {
-    console.log(this.router.url)
     if(this.router.url == '/register'){
-      this.appService.getPublicMenuItems().subscribe((res) => {this.menuItems = res.response; console.log(this.menuItems)})
+      this.appService.getPublicMenuItems().subscribe((res) => {this.menuItems = res.response})
     }
   }
 
@@ -85,7 +84,6 @@ export class RegisterComponent implements OnInit{
           }
         },
         error: err => {
-          console.log(err.error.error);
           this.errors.credentials = err.error.error;
         }
       })

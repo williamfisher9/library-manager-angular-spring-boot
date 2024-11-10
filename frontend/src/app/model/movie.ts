@@ -1,79 +1,79 @@
 export class Movie {
-    title: string;
-    year: string;
-    rated: string;
-    released: string;
-    runtime: string;
-    genre: string;
-    director: string;
-    writer: string; 
-    actors: string; 
-    plot: string; 
-    language: string; 
-    country: string; 
-    awards: string; 
-    poster: string; 
-    ratings: string; 
-    metascore: string; 
-    imdbRating: string; 
-    imdbVotes: string; 
-    imdbID: string; 
-    type: string; 
-    dvd: string; 
-    boxOffice: string; 
-    production: string; 
-    website: string; 
-    response: string
+    Title: string;
+    Year: string;
+    Rated: string;
+    Released: string;
+    Runtime: string;
+    Genre: string;
+    Director: string;
+    Writer: string;
+    Actors: string;
+    Plot: string;
+    Language: string;
+    Country: string;
+    Awards: string;
+    Poster: string;
+    Ratings: string;
+    Metascore: string;
+    ImdbRating: string;
+    ImdbVotes: string;
+    ImdbID: string;
+    Type: string;
+    DVD: string;
+    BoxOffice: string;
+    Production: string;
+    Website: string;
+    Response: string;
 
-    constructor(title: string,
-        year: string,
-        rated: string,
-        released: string,
-        runtime:string,
-        genre: string,
-        director: string,
-        writer: string, 
-        actors: string, 
-        plot: string, 
-        language: string, 
-        country: string, 
-        awards: string, 
-        poster: string, 
-        ratings: string, 
-        metascore: string, 
-        imdbRating: string, 
-        imdbVotes: string, 
-        imdbID: string, 
-        type: string, 
-        dvd: string, 
-        boxOffice: string, 
-        production: string, 
-        website: string, 
-        response: string) {
-            this.title = title,
-            this.year = year,
-            this.rated = rated,
-            this.released = released,
-            this.runtime = runtime,
-            this.genre = genre,
-            this.director = director,
-            this.writer = writer,
-            this.actors = actors, 
-            this.plot = plot, 
-            this.language = language, 
-            this.country = country, 
-            this.awards = awards, 
-            this.poster = poster, 
-            this.ratings = ratings, 
-            this.metascore = metascore, 
-            this.imdbRating = imdbRating, 
-            this.imdbVotes = imdbVotes, 
-            this.imdbID = imdbID, 
-            this.type = type, 
-            this.dvd = dvd, 
-            this.boxOffice = boxOffice, 
-            this.production = production, 
-            this.website = website, 
-            this.response = response
+    constructor(Title: string,
+        Year: string,
+        Rated: string,
+        Released: string,
+        Runtime:string,
+        Genre: string,
+        Director: string,
+        Writer: string,
+        Actors: string,
+        Plot: string,
+        Language: string,
+        Country: string,
+        Awards: string,
+        Poster: string,
+        Ratings: string,
+        Metascore: string,
+        ImdbRating: string,
+        ImdbVotes: string,
+        ImdbID: string,
+        Type: string,
+        DVD: string,
+        BoxOffice: string,
+        Production: string,
+        Website: string,
+        Response: string) {
+            this.Title = Title,
+            this.Year = Year,
+            this.Rated = Rated,
+            this.Released = Released,
+            this.Runtime = Runtime,
+            this.Genre = Genre,
+            this.Director = Director,
+            this.Writer = Writer,
+            this.Actors = Actors, 
+            this.Plot = Plot, 
+            this.Language = Language, 
+            this.Country = Country, 
+            this.Awards = Awards, 
+            this.Poster = Poster, 
+            this.Ratings = Ratings, 
+            this.Metascore = Metascore, 
+            this.ImdbRating = ImdbRating, 
+            this.ImdbVotes = ImdbVotes, 
+            this.ImdbID = ImdbID, 
+            this.Type = Type, 
+            this.DVD = DVD, 
+            this.BoxOffice = BoxOffice, 
+            this.Production = Production, 
+            this.Website = Website, 
+            this.Response = Response
         }
 }

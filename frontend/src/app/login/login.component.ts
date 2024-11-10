@@ -34,9 +34,8 @@ export class LoginComponent {
 
   menuItems:MenuItem[] = [];
   ngOnInit() {
-    console.log(this.router.url)
     if(this.router.url == '/login'){
-      this.appService.getPublicMenuItems().subscribe((res) => {this.menuItems = res.response; console.log(this.menuItems)})
+      this.appService.getPublicMenuItems().subscribe((res) => {this.menuItems = res.response})
     }
   }
 
@@ -63,7 +62,7 @@ export class LoginComponent {
           this.dataService.setUserId(response.response.principal.id);
           this.dataService.setUsername(this.loginForm.value.username!);
           this.dataService.setPassword(this.loginForm.value.password!);
-          this.router.navigate(['/user-home'], { queryParams: {id: response.response.principal.id}})
+          this.router.navigate(['/user-home'])
         }
       },
       error: err => {

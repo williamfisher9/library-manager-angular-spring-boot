@@ -12,7 +12,7 @@
             </div>
 
             <div class="form-button-group">
-                <input class="btn-caption" type="submit" value="search" (click)="showInputValue()">
+                <input class="btn-caption" type="submit" value="search" (click)="searchMovieItem()">
             </div>
 
             <p class="request-error-msg">{{errors.credentials != '' ? errors.credentials : ''}}</p>
@@ -30,15 +30,16 @@
         </div>
     </div>
 
-    <!--<div class="add-item item dashed-border" (click)="showModal()">
-        <i class="icon fa-solid fa-plus"></i>
-    </div>-->
-
     @for (item of items; track $index) {
     <div class="item solid-border">
         <img [src]="item.poster" />
         <div class="item-cover">
             <p>{{item.name}}</p>
+            
+            <div class="item-actions">
+                <i class="fa-solid fa-trash" (click)="deleteItem(item.id)"></i>
+                <i class="fa-solid fa-circle-info" (click)="moreInfo(item.id)"></i>
+            </div>
         </div>
     </div>
     }

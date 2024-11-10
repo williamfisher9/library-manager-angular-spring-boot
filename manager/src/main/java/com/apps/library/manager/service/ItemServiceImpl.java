@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class ItemServiceImpl implements ItemService{
@@ -35,13 +34,12 @@ public class ItemServiceImpl implements ItemService{
     }
 
     @Override
-    public boolean deleteItemById(Long id) {
+    public List<Item> deleteItemById(Long userId, Long id) {
         if(itemRepository.findById(id).isPresent()){
             itemRepository.deleteById(id);
-            return true;
         }
 
-        return false;
+        return itemRepository.findByUserId(userId);
     }
 
     @Override

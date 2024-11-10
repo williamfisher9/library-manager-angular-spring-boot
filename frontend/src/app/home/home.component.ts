@@ -16,10 +16,8 @@ export class HomeComponent implements OnInit{
 
   menuItems:MenuItem[] = [];
   ngOnInit() {
-    console.log(this.router.url)
     if(this.router.url == '/'){
-      console.log("yesss")
-      this.appService.getPublicMenuItems().subscribe((res) => {this.menuItems = res.response; console.log(this.menuItems)})
+      this.appService.getPublicMenuItems().subscribe((res) => {this.menuItems = res.response})
     }
   }
 }

@@ -12,7 +12,7 @@ export class AppService {
 
   constructor(private http : HttpClient, private dataService : DataService, private router : Router) { }
 
-  getUserHome(id : number, username : string, password : string) : Observable<any> {
+  getUserHome(id : number | string, username : string, password : string) : Observable<any> {
     return this.http.post("http://localhost:9999/api/v1/user/home", {userId: id}, 
       {headers: {"Authorization": `Basic ${btoa(username + ':' + password)}`}})
       .pipe(map(response => response));
@@ -24,8 +24,9 @@ export class AppService {
       .pipe(map(response => response));
   }
 
-  createMovieItem(id : number, username : string, password : string, item : any) : Observable<any> {
-    return this.http.post("http://localhost:9999/api/v1/user/create-item", {userId: id, poster: item.Poster, rating: item.imdbRating, year: item.Year, name: item.Title}, 
+  createMovieItem(userId : number | string, username : string, password : string, item : any) : Observable<any> {
+    console.log(item)
+    return this.http.post("http://localhost:9999/api/v1/user/create-item", {userId: userId, poster: item.Poster, rating: item.imdbRating, year: item.Year, name: item.Title, details: JSON.stringify(item)}, 
       {headers: {"Authorization": `Basic ${btoa(username + ':' + password)}`}})
       .pipe(map(response => response)); 
   }
@@ -41,5 +42,9 @@ export class AppService {
   logUserOut(){
     this.dataService.logUserOut();
     this.router.navigate(['/']);
+  }
+
+  deleteItemById(id:number, username : string, password : string, userId : number | string) : Observable<any>{
+    return this.http.delete(`http://localhost:9999/api/v1/user/${userId}/item/${id}`, {headers: {"Authorization": `Basic ${btoa(username + ':' + password)}`}}).pipe(map(res => res))
   }
 }
