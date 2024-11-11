@@ -39,16 +39,18 @@ public class AppInitialData implements CommandLineRunner {
         if(menuRepository.findAll().isEmpty()){
             Menu menu1 = new Menu("PUBLIC", "register", "fa-solid fa-user-plus fa-fw", 1, "/register", "");
             Menu menu2 = new Menu("PUBLIC", "login", "fa-solid fa-arrow-right-to-bracket fa-fw", 2, "/login", "");
-            Menu menu3 = new Menu("ROLE_USER", "search", "fa-solid fa-magnifying-glass fa-fw", 1, "", "");
-            Menu menu4 = new Menu("ROLE_USER", "add", "fa-solid fa-plus fa-fw", 2, "", "addItem");
-            Menu menu5 = new Menu("ROLE_USER", "settings", "fa-solid fa-gear fa-fw", 3, "/settings", "");
-            Menu menu6 = new Menu("ROLE_USER", "logout", "fa-solid fa-right-from-bracket fa-fw", 4, "", "logUserOut");
+            Menu menu4 = new Menu("home", "add", "fa-solid fa-plus fa-fw", 2, "", "addItem");
+            Menu menu5 = new Menu("home", "settings", "fa-solid fa-gear fa-fw", 3, "/settings", "");
+            Menu menu6 = new Menu("home", "logout", "fa-solid fa-right-from-bracket fa-fw", 4, "", "logUserOut");
+            Menu menu7 = new Menu("details", "settings", "fa-solid fa-gear fa-fw", 3, "/settings", "");
+            Menu menu8 = new Menu("details", "logout", "fa-solid fa-right-from-bracket fa-fw", 4, "", "logUserOut");
             menuRepository.save(menu1);
             menuRepository.save(menu2);
-            menuRepository.save(menu3);
             menuRepository.save(menu4);
             menuRepository.save(menu5);
             menuRepository.save(menu6);
+            menuRepository.save(menu7);
+            menuRepository.save(menu8);
         } else {
             LOGGER.info("Menu already exist.");
         }

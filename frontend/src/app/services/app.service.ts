@@ -35,8 +35,8 @@ export class AppService {
     return this.http.get("http://localhost:9999/api/v1/public/get-menu").pipe(map(res => res))
   }
 
-  getPrivateMenuItems(username : string, password : string) : Observable<any>{
-    return this.http.get("http://localhost:9999/api/v1/user/get-menu", {headers: {"Authorization": `Basic ${btoa(username + ':' + password)}`}}).pipe(map(res => res))
+  getPrivateMenuItems(username : string, password : string, type : string) : Observable<any>{
+    return this.http.get(`http://localhost:9999/api/v1/user/get-menu/${type}`, {headers: {"Authorization": `Basic ${btoa(username + ':' + password)}`}}).pipe(map(res => res))
   }
 
   logUserOut(){
@@ -50,6 +50,11 @@ export class AppService {
 
   getItemById(id : any, username : string, password : string) : Observable<any> {
     return this.http.get<any>("http://localhost:9999/api/v1/user/item/"+id, {headers: {"Authorization": `Basic ${btoa(username + ':' + password)}`}})
+    .pipe(map(res => res.response));
+  }
+
+  searchItemByName(name : string, username : string, password : string, userId : string | number) : Observable<any> {
+    return this.http.get<any>(`http://localhost:9999/api/v1/user/${userId}/search/${name == "" ? "nill" : name}`, {headers: {"Authorization": `Basic ${btoa(username + ':' + password)}`}})
     .pipe(map(res => res.response));
   }
 }

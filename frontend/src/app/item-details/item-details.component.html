@@ -1,19 +1,21 @@
 <app-menu [menuItems]="menuItems"></app-menu>
 <div class="item-container">
-    <div class="poster-container">
-        <img [src]="imageUrl" width="100%" height="100%" />
-    </div>
-    <div class="details-container">
-        <p><span class="column-title">Name:</span> {{title}}</p>
-        <p><span class="column-title">Year:</span> {{year}}</p>
-        <p><span class="column-title">Released:</span> {{releaseDate}}</p>
-        <p><span class="column-title">Director:</span> {{director}}</p>
-        <p><span class="column-title">IMDB Rating:</span> {{imdbRating}}</p>
-
-        @for (item of ratings; track $index) {
-            <p><span class="column-title">{{item.Source}} Rating:</span> {{item.Value}}</p>
-        }
-
-        <p><span class="column-title">Plot:</span> {{plot}}</p>
+    <div class="main-container">
+        <div class="poster-container">
+            <img [src]="imageUrl" width="100%" height="100%" />
+        </div>
+        <div class="details-container">
+            <p><span class="column-title">Name:</span> {{title}}</p>
+            <p><span class="column-title">Year:</span> {{year}}</p>
+            <p><span class="column-title">Released:</span> {{releaseDate}}</p>
+            <p><span class="column-title">Director:</span> {{director}}</p>
+            <p><span class="column-title">IMDB Rating:</span> {{imdbRating}}</p>
+    
+            @for (item of ratings; track $index) {
+                <p><span class="column-title">{{item.Source}} Rating:</span> {{item.Value}}</p>
+            }
+    
+            <p><span class="column-title">Plot:</span> {{plot}}</p>
+        </div>
     </div>
 </div>

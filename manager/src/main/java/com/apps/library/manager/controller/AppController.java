@@ -93,11 +93,11 @@ public class AppController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/user/get-menu")
-    public ResponseEntity<ResponseDTO> getPrivateMenu(){
+    @RequestMapping(method = RequestMethod.GET, path = "/user/get-menu/{type}")
+    public ResponseEntity<ResponseDTO> getPrivateMenu(@PathVariable("type") String type){
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setStatus(200);
-        responseDTO.setResponse(authService.getMenu("ROLE_USER"));
+        responseDTO.setResponse(authService.getMenu(type));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
@@ -115,5 +115,20 @@ public class AppController {
         responseDTO.setResponse(itemService.findItemById((long) id));
         responseDTO.setStatus(200);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/user/{userId}/search/{name}")
+    public ResponseEntity<ResponseDTO> searchItemByName(@PathVariable("userId") int userId, @PathVariable("name") String name){
+        if(name.equalsIgnoreCase("nill")) {
+            ResponseDTO responseDTO = new ResponseDTO();
+            responseDTO.setResponse(itemService.findByUserId((long) userId));
+            responseDTO.setStatus(200);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        } else {
+            ResponseDTO responseDTO = new ResponseDTO();
+            responseDTO.setResponse(itemService.findByNameAndUserId(name, (long) userId));
+            responseDTO.setStatus(200);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        }
     }
 }

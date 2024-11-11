@@ -13,4 +13,5 @@ public interface ItemService {
     List<Item> findAllItems();
     List<Item> deleteItemById(Long userId, Long id);
     List<Item> findByUserId(Long id);
+    List<Item> findByNameAndUserId(String name, Long id);
 }

@@ -39,7 +39,7 @@ export class ItemDetailsComponent implements OnInit {
     this.dataService.getUserId.subscribe((res) => (this.userId = res));
 
     this.appService
-      .getPrivateMenuItems(this.username, this.password)
+      .getPrivateMenuItems(this.username, this.password, "details")
       .subscribe((res) => {
         this.menuItems = res.response;
         this.route.queryParamMap.subscribe(params => this.itemId = params.get("itemId"));

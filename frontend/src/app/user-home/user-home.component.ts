@@ -25,7 +25,6 @@ export class UserHomeComponent implements OnInit {
   items: Item[] = [];
 
   constructor(
-    private route: ActivatedRoute,
     private appService: AppService,
     private dataService: DataService,
     private router : Router
@@ -39,7 +38,7 @@ export class UserHomeComponent implements OnInit {
     this.dataService.getUserId.subscribe((res) => (this.userId = res));
 
     this.appService
-      .getPrivateMenuItems(this.username, this.password)
+      .getPrivateMenuItems(this.username, this.password, "home")
       .subscribe((res) => {
         this.menuItems = res.response;
 
@@ -146,6 +145,16 @@ export class UserHomeComponent implements OnInit {
   deleteItem(id : number) {
     this.appService.deleteItemById(id, this.username, this.password, this.userId).subscribe(res => {
       this.items = res.response;
+    })
+  }
+
+  searchValue : string = "";
+
+  searchItem() {
+    this.appService.searchItemByName(this.searchValue, this.username, this.password, this.userId).subscribe({
+      next: res => {
+        this.items = res;
+      }
     })
   }
 }
