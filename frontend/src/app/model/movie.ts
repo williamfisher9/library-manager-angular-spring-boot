@@ -1,3 +1,5 @@
+import { Rating } from "./rating";
+
 export class Movie {
     Title: string;
     Year: string;
@@ -13,11 +15,11 @@ export class Movie {
     Country: string;
     Awards: string;
     Poster: string;
-    Ratings: string;
+    Ratings: Rating[];
     Metascore: string;
-    ImdbRating: string;
-    ImdbVotes: string;
-    ImdbID: string;
+    imdbRating: string;
+    imdbVotes: string;
+    imdbID: string;
     Type: string;
     DVD: string;
     BoxOffice: string;
@@ -39,11 +41,11 @@ export class Movie {
         Country: string,
         Awards: string,
         Poster: string,
-        Ratings: string,
+        Ratings: Rating[],
         Metascore: string,
-        ImdbRating: string,
-        ImdbVotes: string,
-        ImdbID: string,
+        imdbRating: string,
+        imdbVotes: string,
+        imdbID: string,
         Type: string,
         DVD: string,
         BoxOffice: string,
@@ -66,9 +68,9 @@ export class Movie {
             this.Poster = Poster, 
             this.Ratings = Ratings, 
             this.Metascore = Metascore, 
-            this.ImdbRating = ImdbRating, 
-            this.ImdbVotes = ImdbVotes, 
-            this.ImdbID = ImdbID, 
+            this.imdbRating = imdbRating, 
+            this.imdbVotes = imdbVotes, 
+            this.imdbID = imdbID, 
             this.Type = Type, 
             this.DVD = DVD, 
             this.BoxOffice = BoxOffice, 
@@ -77,3 +79,4 @@ export class Movie {
             this.Response = Response
         }
 }
+

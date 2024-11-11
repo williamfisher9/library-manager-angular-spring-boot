@@ -66,10 +66,13 @@ public class AppController {
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/user/get-details/{name}")
-    public ResponseEntity<ResponseDTO> getDetails(@PathVariable String name){
+    @RequestMapping(method = RequestMethod.GET, path = "/user/get-details/{name}/{year}")
+    public ResponseEntity<ResponseDTO> getDetails(@PathVariable String name, @PathVariable String year){
         StringBuilder uri = new StringBuilder("https://www.omdbapi.com/?apikey=6d4509cf&t=");
         uri.append(name);
+        if(!year.equalsIgnoreCase("nill")){
+            uri.append("&y=" + year);
+        }
         RestTemplate restTemplate = new RestTemplate();
 
         String result = restTemplate
@@ -102,6 +105,14 @@ public class AppController {
     public ResponseEntity<ResponseDTO> deleteItemById(@PathVariable("userId") int userId, @PathVariable("id") int id){
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setResponse(itemService.deleteItemById((long) userId, (long) id));
+        responseDTO.setStatus(200);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/user/item/{id}")
+    public ResponseEntity<ResponseDTO> getItemById(@PathVariable("id") int id){
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setResponse(itemService.findItemById((long) id));
         responseDTO.setStatus(200);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }

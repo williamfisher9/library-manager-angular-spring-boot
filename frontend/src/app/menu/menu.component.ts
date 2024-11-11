@@ -3,7 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { MenuItem } from '../model/menu-item';
 import { AppService } from '../services/app.service';
 import { DataService } from '../services/data.service';
-import { map, take, tap } from 'rxjs';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-menu',

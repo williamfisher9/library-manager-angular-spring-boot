@@ -66,6 +66,7 @@ export class UserHomeComponent implements OnInit {
   }
 
   inputValue: string = '';
+  yearValue: string = '';
 
   response!: Movie | null;
 
@@ -86,7 +87,7 @@ export class UserHomeComponent implements OnInit {
       this.dataService.getPassword.subscribe((res) => (this.password = res));
 
       this.appService
-        .getDetails(this.inputValue, this.username, this.password)
+        .getDetails(this.inputValue, this.yearValue, this.username, this.password)
         .subscribe({
           next: (res) => {
             if (JSON.parse(res.response).Response == 'False') {
@@ -136,9 +137,7 @@ export class UserHomeComponent implements OnInit {
       });
   }
 
-  logUserOut() {
-    console.log('logged out');
-  }
+  
 
   moreInfo(itemId : number) {
       this.router.navigate(["/user-home/item-details"], {queryParams: {itemId: itemId}});

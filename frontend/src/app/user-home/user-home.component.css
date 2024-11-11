@@ -7,12 +7,12 @@
     display: grid;
     column-gap: 10px;
     row-gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(225px, 225px));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 210px));
     justify-content: center;
 }
 
 .item {
-    width: 225px;
+    width: 210px;
     height: 300px;
     
     filter: drop-shadow(2px 2px 8px goldenrod);

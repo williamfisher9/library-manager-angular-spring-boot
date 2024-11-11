@@ -11,6 +11,12 @@
                 <p class="error-msg">{{errors.name != '' ? errors.name : ''}}</p>
             </div>
 
+            <div class="form-field-group">
+                <input class="form-field-input" type="text" name="year" id="year" autocomplete="off"
+                    [(ngModel)]="yearValue" />
+                <label for="year" class="form-field-label">year</label>\
+            </div>
+
             <div class="form-button-group">
                 <input class="btn-caption" type="submit" value="search" (click)="searchMovieItem()">
             </div>

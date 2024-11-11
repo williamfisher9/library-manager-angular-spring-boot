@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +22,8 @@ public class Item implements Serializable {
     private String rating;
     private String poster;
     private Long userId;
+
+    @Lob
     private String details;
 
     public Item() {
@@ -83,6 +86,14 @@ public class Item implements Serializable {
         this.poster = poster;
     }
 
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -107,13 +118,5 @@ public class Item implements Serializable {
                 ", userId=" + userId +
                 ", details='" + details + '\'' +
                 '}';
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
     }
 }
