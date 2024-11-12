@@ -59,7 +59,6 @@ public class AppController {
     @RequestMapping(method = RequestMethod.POST, path = "/user/create-item")
     public ResponseEntity<ResponseDTO> createItem(@RequestBody Item item){
 
-        System.out.println(item);
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setStatus(200);
         responseDTO.setResponse(itemService.createItem(item));

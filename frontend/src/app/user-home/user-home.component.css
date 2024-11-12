@@ -265,10 +265,8 @@
     border: 3px solid goldenrod;
     border-radius: 10px;
     background-color: transparent;
-    align-self: center;
     position: relative;
     overflow: hidden;
-    margin: auto;
 }
 
 .main-container {
@@ -298,6 +296,71 @@
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort-icon {
+    color: goldenrod;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sort-icon:hover {
+    scale: 1.2;
+    transform: translateY(-4px);
+}
+
+#search-icon:hover {
+    scale: 1.2;
+    transform: translateY(-47%);
+}
+
+.sort-container {
+    width: 200px;
+    height: 60px;
+    border: 3px solid goldenrod;
+    border-radius: 5px;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    gap: 10px;
+}
+
+.select-title {
+    color: #000;
+    font-size: 14px;
+    text-transform: uppercase;
+    height: 100%;
+    width: 35%;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    background-color: goldenrod;
+}
+
+.sort-container > select {
+    width: 65%;
+    height: 100%;
+    background-color: transparent;
+    color: goldenrod;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.sort-container > select::content{
+    background-color: #000;
+    color: goldenrod;
 }

@@ -1,9 +1,32 @@
 <app-menu [menuItems]="menuItems" (newItemEvent)="showModal()"></app-menu>
 
 <div class="main-container">
-    <div class="user-home-search-field">
-        <input type="text" id="searchFieldValue" autocomplete="off" [(ngModel)]="searchValue"/>
-        <i class="fa-solid fa-magnifying-glass" id="search-icon" (click)="searchItem()"></i>
+    <div class="buttons-container">
+        <div class="user-home-search-field">
+            <input type="text" id="searchFieldValue" autocomplete="off" [(ngModel)]="searchValue"/>
+            <i class="fa-solid fa-magnifying-glass" id="search-icon" (click)="searchItem()"></i>
+        </div>
+
+        <div class="sort-container">
+            <div class="select-title">
+                <p>sort by</p>
+            </div>
+            <select #sortTypeField (change)="handleSortByChange(sortTypeField.value, 'asc')">
+                <option value="1">creation date</option>
+                <option value="2">name</option>
+                <option value="3">release year</option>
+                <option value="4">rating</option>
+            </select>
+        </div>
+
+        
+        @if(sortDirection == "asc"){
+            <i class="sort-icon fa-solid fa-arrow-down-wide-short" (click)="handleSortByChange(sortType, 'desc')"></i>
+        } @else {
+            <i class="sort-icon fa-solid fa-arrow-up-wide-short" (click)="handleSortByChange(sortType, 'asc')"></i>
+        }
+        
+
     </div>
     
     <div class="grid-container">

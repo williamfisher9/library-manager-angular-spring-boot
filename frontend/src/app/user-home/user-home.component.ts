@@ -27,7 +27,7 @@ export class UserHomeComponent implements OnInit {
   constructor(
     private appService: AppService,
     private dataService: DataService,
-    private router : Router
+    private router: Router
   ) {}
 
   menuItems: MenuItem[] = [];
@@ -38,22 +38,19 @@ export class UserHomeComponent implements OnInit {
     this.dataService.getUserId.subscribe((res) => (this.userId = res));
 
     this.appService
-      .getPrivateMenuItems(this.username, this.password, "home")
+      .getPrivateMenuItems(this.username, this.password, 'home')
       .subscribe((res) => {
         this.menuItems = res.response;
 
         this.appService
-        .getUserHome(this.userId, this.username, this.password)
-        .subscribe({
-          next: (res) => {
-            this.items = res.response;
-          },
-          error: (err) => console.log(err),
-        });
-
+          .getUserHome(this.userId, this.username, this.password)
+          .subscribe({
+            next: (res) => {
+              this.items = res.response;
+            },
+            error: (err) => console.log(err),
+          });
       });
-
-    
   }
 
   showModal() {
@@ -86,7 +83,12 @@ export class UserHomeComponent implements OnInit {
       this.dataService.getPassword.subscribe((res) => (this.password = res));
 
       this.appService
-        .getDetails(this.inputValue, this.yearValue, this.username, this.password)
+        .getDetails(
+          this.inputValue,
+          this.yearValue,
+          this.username,
+          this.password
+        )
         .subscribe({
           next: (res) => {
             if (JSON.parse(res.response).Response == 'False') {
@@ -110,22 +112,13 @@ export class UserHomeComponent implements OnInit {
 
   addMovieToLibrary(response: any) {
     this.appService
-      .createMovieItem(
-        this.userId,
-        this.username,
-        this.password,
-        response
-      )
+      .createMovieItem(this.userId, this.username, this.password, response)
       .subscribe((res) => {
         if (res.status == 200) {
           this.hideModal = 'hidden';
 
           this.appService
-            .getUserHome(
-              this.userId,
-              this.username,
-              this.password
-            )
+            .getUserHome(this.userId, this.username, this.password)
             .subscribe({
               next: (res) => {
                 this.items = res.response;
@@ -136,25 +129,142 @@ export class UserHomeComponent implements OnInit {
       });
   }
 
-  
-
-  moreInfo(itemId : number) {
-      this.router.navigate(["/user-home/item-details"], {queryParams: {itemId: itemId}});
+  moreInfo(itemId: number) {
+    this.router.navigate(['/user-home/item-details'], {
+      queryParams: { itemId: itemId },
+    });
   }
 
-  deleteItem(id : number) {
-    this.appService.deleteItemById(id, this.username, this.password, this.userId).subscribe(res => {
-      this.items = res.response;
-    })
+  deleteItem(id: number) {
+    this.appService
+      .deleteItemById(id, this.username, this.password, this.userId)
+      .subscribe((res) => {
+        this.items = res.response;
+      });
   }
 
-  searchValue : string = "";
+  searchValue: string = '';
+  sortDirection : string = "asc";
+  sortType : string = "1";
 
   searchItem() {
-    this.appService.searchItemByName(this.searchValue, this.username, this.password, this.userId).subscribe({
-      next: res => {
-        this.items = res;
-      }
-    })
+    this.appService
+      .searchItemByName(
+        this.searchValue,
+        this.username,
+        this.password,
+        this.userId
+      )
+      .subscribe({
+        next: (res) => {
+          this.items = res;
+        },
+      });
   }
+
+  handleSortByChange(val : string, direction : string){
+    this.sortType = val;
+    this.sortDirection = direction;
+    if(val == "1"){
+      if(direction == "asc"){
+        this.items.sort((a, b) => {
+          if (a.id < b.id) {
+            return -1;
+          }
+          if (a.id > b.id) {
+            return 1;
+          }
+          return 0;
+        });
+      } else {
+        this.items.sort((a, b) => {
+          if (a.id > b.id) {
+            return -1;
+          }
+          if (a.id < b.id) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+    }
+
+    if(val == "2"){
+      if(direction == 'asc'){
+        this.items.sort((a, b) => {
+          if (a.name < b.name) {
+            return -1;
+          }
+          if (a.name > b.name) {
+            return 1;
+          }
+          return 0;
+        });
+      } else {
+        this.items.sort((a, b) => {
+          if (a.name > b.name) {
+            return -1;
+          }
+          if (a.name < b.name) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+    }
+
+    
+
+    if(val == "3"){
+      if(direction == "asc"){
+        this.items.sort((a, b) => {
+          if (a.year < b.year) {
+            return -1;
+          }
+          if (a.year > b.year) {
+            return 1;
+          }
+          return 0;
+        });
+      } else {
+        this.items.sort((a, b) => {
+          if (a.year > b.year) {
+            return -1;
+          }
+          if (a.year < b.year) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+    }
+
+
+    if(val == "4"){
+      if(direction == 'asc'){
+        this.items.sort((a, b) => {
+          if (a.rating < b.rating) {
+            return -1;
+          }
+          if (a.rating > b.rating) {
+            return 1;
+          }
+          return 0;
+        });
+      } else {
+        this.items.sort((a, b) => {
+          if (a.rating > b.rating) {
+            return -1;
+          }
+          if (a.rating < b.rating) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+    }
+
+  }
+
+  
 }
