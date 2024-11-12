@@ -19,7 +19,10 @@ public class ItemServiceImpl implements ItemService{
 
     @Override
     public Item createItem(Item item) {
-        return itemRepository.save(item);
+        if(itemRepository.findByName(item.getName()).isEmpty())
+            return itemRepository.save(item);
+
+        return null;
     }
 
     @Override

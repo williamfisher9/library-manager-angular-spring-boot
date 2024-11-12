@@ -59,6 +59,8 @@ export class UserHomeComponent implements OnInit {
 
   closeModal() {
     this.hideModal = 'hidden';
+    this.inputValue = "";
+    this.yearValue = "";
   }
 
   inputValue: string = '';
@@ -116,12 +118,17 @@ export class UserHomeComponent implements OnInit {
       .subscribe((res) => {
         if (res.status == 200) {
           this.hideModal = 'hidden';
-
+          this.inputValue = "";
+          this.yearValue = "";
+          
           this.appService
             .getUserHome(this.userId, this.username, this.password)
             .subscribe({
               next: (res) => {
                 this.items = res.response;
+                this.inputValue = "";
+          this.yearValue = "";
+          this.response = null;
               },
               error: (err) => console.log(err),
             });

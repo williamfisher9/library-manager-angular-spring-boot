@@ -4,7 +4,12 @@
 }
 
 .icon {
+    transition: 0.3s;
+}
+
+.icon:hover {
     cursor: pointer;
+    scale: 1.2;
 }
 
 .bread-crumbs-container{
@@ -13,4 +18,8 @@
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border: 1px solid goldenrod;
+    border-radius: 10px;
 }

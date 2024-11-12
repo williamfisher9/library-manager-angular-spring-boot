@@ -26,7 +26,7 @@ export class AppService {
   }
 
   createMovieItem(userId : number | string, username : string, password : string, item : any) : Observable<any> {
-    return this.http.post("http://localhost:9999/api/v1/user/create-item", {userId: userId, poster: item.Poster, rating: item.imdbRating, year: item.Year, name: item.Title, details: JSON.stringify(item)}, 
+    return this.http.post("http://localhost:9999/api/v1/user/create-item", {userId: userId, poster: item.Poster, rating: item.imdbRating, year: item.Year, name: item.Title, type: item.Type, details: JSON.stringify(item)}, 
       {headers: {"Authorization": `Basic ${btoa(username + ':' + password)}`}})
       .pipe(map(response => response)); 
   }

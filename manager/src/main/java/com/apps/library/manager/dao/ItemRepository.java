@@ -11,4 +11,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     @Query(nativeQuery = true, value = "select * from items a where a.name like %:name% and a.user_id=:userId")
     List<Item> findByNameLikeAndUserId(String name, Long userId);
+
+    List<Item> findByName(String name);
 }
