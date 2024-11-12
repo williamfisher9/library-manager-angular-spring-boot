@@ -4,6 +4,7 @@ import com.apps.library.manager.model.app.Item;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -14,4 +15,5 @@ public interface ItemService {
     List<Item> deleteItemById(Long userId, Long id);
     List<Item> findByUserId(Long id);
     List<Item> findByNameAndUserId(String name, Long id);
+    Item setItemAsWatched(Map<String, String> request);
 }

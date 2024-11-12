@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class ItemServiceImpl implements ItemService{
@@ -53,5 +54,14 @@ public class ItemServiceImpl implements ItemService{
     @Override
     public List<Item> findByNameAndUserId(String name, Long id) {
         return itemRepository.findByNameLikeAndUserId(name, id);
+    }
+
+    @Override
+    public Item setItemAsWatched(Map<String, String> request) {
+        Item item = itemRepository.findById(Long.valueOf(request.get("itemId")))
+                .orElseThrow(() -> new ItemNotFoundException(""));
+        item.setWatched(Boolean.parseBoolean(request.get("watched")));
+
+        return itemRepository.save(item);
     }
 }

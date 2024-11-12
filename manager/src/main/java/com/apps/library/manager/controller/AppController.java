@@ -130,4 +130,13 @@ public class AppController {
             return new ResponseEntity<>(responseDTO, HttpStatus.OK);
         }
     }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/user/item/watched")
+    public ResponseEntity<ResponseDTO> setItemAsWatched(@RequestBody Map<String, String> request){
+        System.out.println(request);
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setStatus(200);
+        responseDTO.setResponse(itemService.setItemAsWatched(request));
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
 }

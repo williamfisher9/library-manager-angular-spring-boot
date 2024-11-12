@@ -23,6 +23,7 @@ public class Item implements Serializable {
     private String poster;
     private Long userId;
     private String type;
+    private boolean watched;
 
     @Lob
     private String details;
@@ -30,13 +31,14 @@ public class Item implements Serializable {
     public Item() {
     }
 
-    public Item(String name, String year, String rating, String poster, Long userId, String type, String details) {
+    public Item(String name, String year, String rating, String poster, Long userId, String type, boolean watched, String details) {
         this.name = name;
         this.year = year;
         this.rating = rating;
         this.poster = poster;
         this.userId = userId;
         this.type = type;
+        this.watched = watched;
         this.details = details;
     }
 
@@ -109,12 +111,12 @@ public class Item implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return Objects.equals(id, item.id) && Objects.equals(name, item.name) && Objects.equals(year, item.year) && Objects.equals(rating, item.rating) && Objects.equals(poster, item.poster) && Objects.equals(userId, item.userId) && Objects.equals(type, item.type) && Objects.equals(details, item.details);
+        return watched == item.watched && Objects.equals(id, item.id) && Objects.equals(name, item.name) && Objects.equals(year, item.year) && Objects.equals(rating, item.rating) && Objects.equals(poster, item.poster) && Objects.equals(userId, item.userId) && Objects.equals(type, item.type) && Objects.equals(details, item.details);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, year, rating, poster, userId, type, details);
+        return Objects.hash(id, name, year, rating, poster, userId, type, watched, details);
     }
 
     @Override
@@ -127,7 +129,16 @@ public class Item implements Serializable {
                 ", poster='" + poster + '\'' +
                 ", userId=" + userId +
                 ", type='" + type + '\'' +
+                ", watched=" + watched +
                 ", details='" + details + '\'' +
                 '}';
+    }
+
+    public boolean isWatched() {
+        return watched;
+    }
+
+    public void setWatched(boolean watched) {
+        this.watched = watched;
     }
 }
