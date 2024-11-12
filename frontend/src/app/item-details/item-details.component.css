@@ -38,3 +38,17 @@
     text-transform: uppercase;
     color: goldenrod;
 }
+
+#watchedButton {
+    border: 2px solid goldenrod;
+    background-color: transparent;
+    outline: none;
+    color: goldenrod;
+    padding: 10px 20px;
+}
+
+#watchedButton:hover {
+    cursor: pointer;
+    background-color: goldenrod;
+    color: #000;
+}

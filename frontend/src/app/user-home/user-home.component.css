@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
     min-height: 100%;
-    padding: 20px 100px 20px 100px;
+    padding: 40px 100px 20px 100px;
 
     display: grid;
     column-gap: 10px;
@@ -260,8 +260,8 @@
 }
 
 .user-home-search-field {
-    width: 60%;
-    height: 60px;
+    width: 500px;
+    height: 50px;
     border: 3px solid goldenrod;
     border-radius: 10px;
     background-color: transparent;
@@ -327,14 +327,13 @@
 
 .sort-container {
     width: 200px;
-    height: 60px;
+    height: 50px;
     border: 3px solid goldenrod;
     border-radius: 5px;
     background-color: transparent;
     position: relative;
     overflow: hidden;
     display: flex;
-    gap: 10px;
 }
 
 .select-title {
@@ -363,4 +362,15 @@
 .sort-container > select::content{
     background-color: #000;
     color: goldenrod;
+}
+
+.eye-icon {
+    font-size: 1rem;
+    color: goldenrod;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 5px;
 }

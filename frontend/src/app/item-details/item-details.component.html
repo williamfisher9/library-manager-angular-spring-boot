@@ -19,6 +19,8 @@
             }
     
             <p><span class="column-title">Plot:</span> {{plot}}</p>
+
+            <input id="watchedButton" type="button" [value]="watched ? 'SET AS UNWATCHED' : 'SET AS WATCHED'" (click)="setAsWatched()"/>
         </div>
     </div>
 </div>

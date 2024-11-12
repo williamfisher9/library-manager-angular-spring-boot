@@ -57,4 +57,11 @@ export class AppService {
     return this.http.get<any>(`http://localhost:9999/api/v1/user/${userId}/search/${name == "" ? "nill" : name}`, {headers: {"Authorization": `Basic ${btoa(username + ':' + password)}`}})
     .pipe(map(res => res.response));
   }
+
+  setItemAsWatched(userId : string | number, username : string, password : string, watched : boolean, itemId: number | string | null) : Observable<any> {
+    return this.http.post("http://localhost:9999/api/v1/user/item/watched", {userId: userId, itemId: itemId, watched: watched}, 
+    {headers: {"Authorization": `Basic ${btoa(username + ':' + password)}`}})
+    .pipe(map(response => response)); 
+}
+  
 }
