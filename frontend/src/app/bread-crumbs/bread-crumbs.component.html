@@ -1,0 +1,6 @@
+<div class="bread-crumbs-container">
+    <i class="bread-crumb-icon fa-solid fa-house icon" (click)="navigateToHome()"></i>
+    @for (item of links; track $index) {
+        <span class="bread-crumb-icon"> / {{item}}</span>
+    }
+</div>

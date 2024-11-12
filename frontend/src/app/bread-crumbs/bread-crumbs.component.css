@@ -1,0 +1,16 @@
+.bread-crumb-icon {
+    color: goldenrod;
+    font-size: 1.2rem;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.bread-crumbs-container{
+    position: absolute;
+    margin: auto;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}

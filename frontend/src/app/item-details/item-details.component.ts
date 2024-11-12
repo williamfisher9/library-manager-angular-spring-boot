@@ -7,11 +7,12 @@ import { Movie } from '../model/movie';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs';
 import { Rating } from '../model/rating';
+import { BreadCrumbsComponent } from "../bread-crumbs/bread-crumbs.component";
 
 @Component({
   selector: 'app-item-details',
   standalone: true,
-  imports: [MenuComponent],
+  imports: [MenuComponent, BreadCrumbsComponent],
   templateUrl: './item-details.component.html',
   styleUrl: './item-details.component.css'
 })
@@ -32,11 +33,15 @@ export class ItemDetailsComponent implements OnInit {
   imdbRating! : string;
   ratings! : Rating[]
 
+  links : string[] = [];
+
   menuItems : MenuItem[] = [];
   ngOnInit(): void {
     this.dataService.getUsername.subscribe((res) => (this.username = res));
     this.dataService.getPassword.subscribe((res) => (this.password = res));
     this.dataService.getUserId.subscribe((res) => (this.userId = res));
+
+    
 
     this.appService
       .getPrivateMenuItems(this.username, this.password, "details")
@@ -54,6 +59,8 @@ export class ItemDetailsComponent implements OnInit {
           this.plot = JSON.parse(res.details).Plot;
           this.imdbRating = JSON.parse(res.details).imdbRating;
           this.ratings = JSON.parse(res.details).Ratings;
+
+          this.links.push(this.title);
         });
     });
 }
