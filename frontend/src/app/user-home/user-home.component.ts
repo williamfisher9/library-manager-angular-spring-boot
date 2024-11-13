@@ -156,7 +156,7 @@ export class UserHomeComponent implements OnInit {
 
   searchItem() {
     this.appService
-      .searchItemByName(
+      .searchItemsByName(
         this.searchValue,
         this.username,
         this.password,
@@ -273,5 +273,77 @@ export class UserHomeComponent implements OnInit {
 
   }
 
-  
+  setAsWatched(item : Item) {
+    this.appService.setItemAsWatched(this.userId, this.username, this.password, !item.watched, item.id).subscribe(res => {
+      if(res.status == 200)
+        item.watched = res.response.watched;
+    })
+  }
+
+  watchedIconActive : boolean = false;
+  seriesIconActive : boolean = false;
+  moviesIconActive : boolean = false;
+
+  showWatchedItems(){
+    this.watchedIconActive = !this.watchedIconActive;
+    this.seriesIconActive = false;
+    this.moviesIconActive = false;
+
+    if(this.watchedIconActive){
+      this.appService.filterItemsBy("watched", this.username, this.password, this.userId).subscribe(res => {
+        this.items = res;
+      })
+    } else {
+      this.appService
+      .getUserHome(this.userId, this.username, this.password)
+      .subscribe({
+        next: (res) => {
+          this.items = res.response;
+        },
+        error: (err) => console.log(err),
+      });
+    }
+  }
+
+  showMovieItems(){
+    this.watchedIconActive = false;
+    this.seriesIconActive = false;
+    this.moviesIconActive = !this.moviesIconActive;
+
+    if(this.moviesIconActive){
+      this.appService.filterItemsBy("movies", this.username, this.password, this.userId).subscribe(res => {
+        this.items = res;
+      })
+    } else {
+      this.appService
+      .getUserHome(this.userId, this.username, this.password)
+      .subscribe({
+        next: (res) => {
+          this.items = res.response;
+        },
+        error: (err) => console.log(err),
+      });
+    }
+  }
+
+  showSeriesItems(){
+    this.watchedIconActive = false;
+    this.moviesIconActive = false;
+    this.seriesIconActive = !this.seriesIconActive;
+
+    if(this.seriesIconActive){
+      this.appService.filterItemsBy("series", this.username, this.password, this.userId).subscribe(res => {
+        this.items = res;
+      })
+    } else {
+      this.appService
+      .getUserHome(this.userId, this.username, this.password)
+      .subscribe({
+        next: (res) => {
+          this.items = res.response;
+        },
+        error: (err) => console.log(err),
+      });
+    }
+  }
 }

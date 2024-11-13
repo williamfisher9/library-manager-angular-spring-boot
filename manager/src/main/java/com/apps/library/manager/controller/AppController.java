@@ -133,10 +133,31 @@ public class AppController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/user/item/watched")
     public ResponseEntity<ResponseDTO> setItemAsWatched(@RequestBody Map<String, String> request){
-        System.out.println(request);
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setStatus(200);
         responseDTO.setResponse(itemService.setItemAsWatched(request));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/user/{userId}/filter/{fieldName}")
+    public ResponseEntity<ResponseDTO> filterItemsBy(@PathVariable("userId") int userId, @PathVariable("fieldName") String fieldName){
+        if(fieldName.equalsIgnoreCase("watched")) {
+            ResponseDTO responseDTO = new ResponseDTO();
+            responseDTO.setResponse(itemService.findbyUserIdAndWatched((long) userId));
+            responseDTO.setStatus(200);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        } else if(fieldName.equalsIgnoreCase("movies")) {
+            ResponseDTO responseDTO = new ResponseDTO();
+            responseDTO.setResponse(itemService.findByUserIdAndType((long) userId, "movies"));
+            responseDTO.setStatus(200);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        } else if(fieldName.equalsIgnoreCase("series")) {
+            ResponseDTO responseDTO = new ResponseDTO();
+            responseDTO.setResponse(itemService.findByUserIdAndType((long) userId, "series"));
+            responseDTO.setStatus(200);
+            return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
     }
 }

@@ -21,10 +21,14 @@
 
         
         @if(sortDirection == "asc"){
-            <i class="sort-icon fa-solid fa-arrow-down-wide-short" (click)="handleSortByChange(sortType, 'desc')"></i>
+            <i class="top-bar-icon fa-solid fa-arrow-down-wide-short" (click)="handleSortByChange(sortType, 'desc')"></i>
         } @else {
-            <i class="sort-icon fa-solid fa-arrow-up-wide-short" (click)="handleSortByChange(sortType, 'asc')"></i>
+            <i class="top-bar-icon fa-solid fa-arrow-up-wide-short" (click)="handleSortByChange(sortType, 'asc')"></i>
         }
+
+        <i [class]="watchedIconActive ? 'top-bar-icon fa-regular fa-eye highlight-icon' : 'top-bar-icon fa-regular fa-eye'" (click)="showWatchedItems()"></i>
+        <i [class]="seriesIconActive ? 'top-bar-icon fa-solid fa-tv highlight-icon' : 'top-bar-icon fa-solid fa-tv'" (click)="showSeriesItems()"></i>
+        <i [class]="moviesIconActive ? 'top-bar-icon fa-solid fa-video highlight-icon' : 'top-bar-icon fa-solid fa-video'" (click)="showMovieItems()"></i>
         
 
     </div>
@@ -71,18 +75,32 @@
         @for (item of items; track $index) {
         <div class="item solid-border">
             <img [src]="item.poster" />
-            @if (item.watched) {
-                <i class="eye-icon fa-regular fa-eye"></i>
-            } @else {
-                <i class="eye-icon fa-regular fa-eye-slash"></i>
-            }
+            <div class="item-icons-bar">
+                @if (item.watched) {
+                    <i class="item-icons-bar-icon fa-regular fa-eye"></i>
+                } @else {
+                    <i class="item-icons-bar-icon fa-regular fa-eye-slash"></i>
+                }
+    
+                @if (item.type == "series") {
+                    <i class="item-icons-bar-icon fa-solid fa-tv"></i>
+                } @else {
+                    <i class="item-icons-bar-icon fa-solid fa-video"></i>
+                }
+            </div>
+
             <div class="item-cover">
                 <p>{{item.name}}</p>
                 <p>{{item.year}}</p>
                 <p>{{item.rating}}</p>
-                <div class="item-actions">
+                <div class="item-actions-bar">
                     <i class="fa-solid fa-trash" (click)="deleteItem(item.id)"></i>
                     <i class="fa-solid fa-circle-info" (click)="moreInfo(item.id)"></i>
+                    @if (item.watched) {
+                        <i class="fa-regular fa-eye" (click)="setAsWatched(item)"></i>
+                    } @else {
+                        <i class="fa-regular fa-eye-slash" (click)="setAsWatched(item)"></i>
+                    }
                 </div>
             </div>
         </div>

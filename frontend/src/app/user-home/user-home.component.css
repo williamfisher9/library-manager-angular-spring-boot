@@ -239,21 +239,22 @@
     font-weight: 500;
 }
 
-.item-actions {
+.item-actions-bar {
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     color: goldenrod;
     font-size: 1.2rem;
+    display: flex;
+    gap: 15px;
 }
 
-.item-actions > i {
-    margin: 20px 10px;
+.item-actions-bar > i {
     transition: 0.3s;
 }
 
-.item-actions > i:hover {
+.item-actions-bar > i:hover {
     scale: 1.4;
     transform: translateY(-4px);
     cursor: pointer;
@@ -308,14 +309,15 @@
     gap: 10px;
 }
 
-.sort-icon {
+.top-bar-icon {
     color: goldenrod;
     font-size: 1.5rem;
     cursor: pointer;
     transition: 0.3s;
+    padding: 5px;
 }
 
-.sort-icon:hover {
+.top-bar-icon:hover {
     scale: 1.2;
     transform: translateY(-4px);
 }
@@ -364,13 +366,26 @@
     color: goldenrod;
 }
 
-.eye-icon {
+.item-icons-bar-icon {
     font-size: 1rem;
-    color: goldenrod;
+    color: black;
+    background-color: rgba(218, 165, 32, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.item-icons-bar {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     top: 10px;
     left: 10px;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 10px;
+}
+
+.highlight-icon {
+    color: black;
+    background-color: rgba(218, 165, 32, 0.8);
+    padding: 5px;
     border-radius: 5px;
 }

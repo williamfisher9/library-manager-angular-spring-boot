@@ -16,4 +16,7 @@ public interface ItemService {
     List<Item> findByUserId(Long id);
     List<Item> findByNameAndUserId(String name, Long id);
     Item setItemAsWatched(Map<String, String> request);
+
+    List<Item> findbyUserIdAndWatched(Long id);
+    List<Item> findByUserIdAndType(Long id, String val);
 }

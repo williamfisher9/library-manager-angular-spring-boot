@@ -53,7 +53,7 @@ export class AppService {
     .pipe(map(res => res.response));
   }
 
-  searchItemByName(name : string, username : string, password : string, userId : string | number) : Observable<any> {
+  searchItemsByName(name : string, username : string, password : string, userId : string | number) : Observable<any> {
     return this.http.get<any>(`http://localhost:9999/api/v1/user/${userId}/search/${name == "" ? "nill" : name}`, {headers: {"Authorization": `Basic ${btoa(username + ':' + password)}`}})
     .pipe(map(res => res.response));
   }
@@ -62,6 +62,11 @@ export class AppService {
     return this.http.post("http://localhost:9999/api/v1/user/item/watched", {userId: userId, itemId: itemId, watched: watched}, 
     {headers: {"Authorization": `Basic ${btoa(username + ':' + password)}`}})
     .pipe(map(response => response)); 
-}
+  }
+
+  filterItemsBy(fieldName : string, username : string, password : string, userId : string | number) : Observable<any> {
+    return this.http.get<any>(`http://localhost:9999/api/v1/user/${userId}/filter/${fieldName}`, {headers: {"Authorization": `Basic ${btoa(username + ':' + password)}`}})
+    .pipe(map(res => res.response));
+  }
   
 }

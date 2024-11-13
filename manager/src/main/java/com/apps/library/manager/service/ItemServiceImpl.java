@@ -64,4 +64,18 @@ public class ItemServiceImpl implements ItemService{
 
         return itemRepository.save(item);
     }
+
+    @Override
+    public List<Item> findbyUserIdAndWatched(Long id) {
+        return itemRepository.findByUserIdAndWatched(id);
+    }
+
+    @Override
+    public List<Item> findByUserIdAndType(Long id, String val) {
+        if(val.equalsIgnoreCase("movies")){
+            return itemRepository.findByUserIdAndMovies(id);
+        } else {
+            return itemRepository.findByUserIdAndSeries(id);
+        }
+    }
 }
