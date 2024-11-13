@@ -9,7 +9,11 @@
 
         <div class="sort-container">
             <div class="select-title">
-                <p>sort by</p>
+                @if(sortDirection == "asc"){
+                    <i class="top-bar-icon fa-solid fa-arrow-down-wide-short" (click)="handleSortByChange(sortType, 'desc')"></i>
+                } @else {
+                    <i class="top-bar-icon fa-solid fa-arrow-up-wide-short" (click)="handleSortByChange(sortType, 'asc')"></i>
+                }
             </div>
             <select #sortTypeField (change)="handleSortByChange(sortTypeField.value, 'asc')">
                 <option value="1">creation date</option>
@@ -18,13 +22,6 @@
                 <option value="4">rating</option>
             </select>
         </div>
-
-        
-        @if(sortDirection == "asc"){
-            <i class="top-bar-icon fa-solid fa-arrow-down-wide-short" (click)="handleSortByChange(sortType, 'desc')"></i>
-        } @else {
-            <i class="top-bar-icon fa-solid fa-arrow-up-wide-short" (click)="handleSortByChange(sortType, 'asc')"></i>
-        }
 
         <i [class]="watchedIconActive ? 'top-bar-icon fa-regular fa-eye highlight-icon' : 'top-bar-icon fa-regular fa-eye'" (click)="showWatchedItems()"></i>
         <i [class]="seriesIconActive ? 'top-bar-icon fa-solid fa-tv highlight-icon' : 'top-bar-icon fa-solid fa-tv'" (click)="showSeriesItems()"></i>
