@@ -8,3 +8,4 @@
 - Posters viewing.
 - Searching stored records.
 - Filtering records based on watched and type.
+- Backend integration with OMDBI to fetch series/movie details.
