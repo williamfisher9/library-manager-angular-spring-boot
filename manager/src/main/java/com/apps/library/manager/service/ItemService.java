@@ -19,4 +19,6 @@ public interface ItemService {
 
     List<Item> findbyUserIdAndWatched(Long id);
     List<Item> findByUserIdAndType(Long id, String val);
+
+    String fetchItemDetailsFromOMDB(String name, String year);
 }

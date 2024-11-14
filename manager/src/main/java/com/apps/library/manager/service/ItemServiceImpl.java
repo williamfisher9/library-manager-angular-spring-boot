@@ -4,13 +4,19 @@ import com.apps.library.manager.dao.ItemRepository;
 import com.apps.library.manager.exceptions.ItemNotFoundException;
 import com.apps.library.manager.model.app.Item;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Map;
 
 @Component
 public class ItemServiceImpl implements ItemService{
+
+    @Value("${omdb.api.key}")
+    private String omdbKey;
+
     private final ItemRepository itemRepository;
 
     @Autowired
@@ -77,5 +83,16 @@ public class ItemServiceImpl implements ItemService{
         } else {
             return itemRepository.findByUserIdAndSeries(id);
         }
+    }
+
+    @Override
+    public String fetchItemDetailsFromOMDB(String name, String year) {
+        String uri = "https://www.omdbapi.com/?apikey=" + omdbKey +  "&t=" + name +
+                (!year.equalsIgnoreCase("nill") ? "&y=" + year : "");
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        return restTemplate
+                .getForObject(uri.replace(" ", "+"), String.class);
     }
 }

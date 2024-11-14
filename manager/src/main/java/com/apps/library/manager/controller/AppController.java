@@ -66,21 +66,10 @@ public class AppController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/user/get-details/{name}/{year}")
-    public ResponseEntity<ResponseDTO> getDetails(@PathVariable String name, @PathVariable String year){
-        StringBuilder uri = new StringBuilder("https://www.omdbapi.com/?apikey=6d4509cf&t=");
-        uri.append(name);
-        if(!year.equalsIgnoreCase("nill")){
-            uri.append("&y=" + year);
-        }
-        RestTemplate restTemplate = new RestTemplate();
-
-        String result = restTemplate
-                .getForObject(uri.toString().replace(" ", "+"), String.class);
-
+    public ResponseEntity<ResponseDTO> fetchItemDetailsFromOMDBApi(@PathVariable String name, @PathVariable String year){
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.setStatus(200);
-        responseDTO.setResponse(result);
-
+        responseDTO.setResponse(itemService.fetchItemDetailsFromOMDB(name, year));
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
