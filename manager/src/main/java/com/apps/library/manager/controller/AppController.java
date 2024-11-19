@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Map;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins={"http://localhost:4200", "http://localhost:5173"})
 @RequestMapping("/api/v1")
 public class AppController {
     private final AuthService authService;
