@@ -12,13 +12,13 @@
 - Backend integration with OMDBI to fetch series/movie details.
 
 ## Technologies:
-- ReactJS
+- Angular
 - Java
 - Spring Boot
 - Spring Security
 - HTML
 - CSS
-- JavaScript
+- TypeScript
 - Maven
 - NPM
 - MySQL DB
