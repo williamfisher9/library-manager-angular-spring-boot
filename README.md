@@ -11,3 +11,14 @@
 - Filtering records based on watched and type.
 - Backend integration with OMDBI to fetch series/movie details.
 
+## Technologies:
+- ReactJS
+- Java
+- Spring Boot
+- Spring Security
+- HTML
+- CSS
+- JavaScript
+- Maven
+- NPM
+- MySQL DB
